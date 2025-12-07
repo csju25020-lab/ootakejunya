@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sato Taro - Portfolio</title>
+    <style>
+        /*
+        * CSS Reset and Base Styles
+        */
+        :root {
+            --primary-color: #007bff; /* Primary Blue for accents */
+            --secondary-color: #6c757d; /* Secondary Gray */
+            --background-color: #f8f9fa; /* Light Gray Background */
+            --text-color: #343a40; /* Dark Gray Text */
+            --white: #ffffff;
+            --font-main: 'Helvetica Neue', Arial, sans-serif;
+            --max-width: 1000px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /*
+        * Layout and Container
+        */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links li {
+            display: inline;
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        /*
+        * Hero/About Section
+        */
+        #about {
+            background-color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .profile-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .profile-text {
+            max-width: 600px;
+        }
+
+        .profile-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .profile-text h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .profile-text p {
+            margin-bottom: 15px;
+        }
+
+        .gaku-chika-box {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin-top: 30px;
+            background-color: #e9f5ff; /* Lighter shade for emphasis */
+            padding: 20px;
+            border-radius: 5px;
+            line-height: 1.8;
+            border: 1px solid #cce5ff;
+        }
+
+        .gaku-chika-box strong {
+            color: var(--primary-color);
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            background-color: var(--secondary-color); /* Placeholder color */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+        }
+
+        /*
+        * Skills Section
+        */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .skill-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-card h3 {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .skill-card p {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+        }
+
+        /* Example icon placeholders (replace with actual icons if using a library) */
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+
+        /*
+        * Portfolio Section (Project Grid)
+        */
+        #portfolio {
+            background-color: var(--background-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-image-placeholder {
+            height: 200px;
+            background-color: #cccccc; /* Placeholder for image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .project-info a {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /*
+        * Contact Section
+        */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        /*
+        * Footer
+        */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--text-color);
+            color: var(--background-color);
+            font-size: 0.9rem;
+        }
+
+        /*
+        * Responsiveness (Simple adaptation for smaller screens)
+        */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide navigation on small screens for simplicity */
+            }
+
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-text {
+                text-align: center;
+            }
+
+            .profile-image {
+                margin-bottom: 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#about" class="logo">Sato Taro</a>
+                <ul class="nav-links">
+                    <li><a href="#about">自己紹介</a></li>
+                    <li><a href="#skills">スキル</a></li>
+                    <li><a href="#portfolio">ポートフォリオ</a></li>
+                    <li><a href="#contact">連絡先</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-heading">👋 自己紹介 / About Me</h2>
+            <div class="profile-content">
+                <div class="profile-image">
+                    
+                </div>
+                <div class="profile-text">
+                    <h1>佐藤 太郎 (Sato Taro)</h1>
+                    <h2>〇〇大学 〇〇学部 3年生</h2>
+                    <p>
+                        将来、社会に貢献できる教育者を目指して日々学んでいます。大学での専門知識に加え、アルバイトや課外活動を通じて、**目標達成に向けた課題発見力と改善実行力**を磨いてきました。特に、生徒指導の経験から、相手の思考プロセスを深く理解し、それに応じた支援を設計することの重要性を学びました。
+                    </p>
+
+                    <div class="gaku-chika-box">
+                        <p><strong>【学生時代に力を入れたこと (ガクチカ)：個別化指導の改善】</strong></p>
+                        <p>
+                            将来教員を目指し、大学入学直後から中学生6名の集団授業を2か月担当しました。特に方程式の文章題では5名が同じ段階で止まり、どこで思考が迷うのか把握できず、説明が一方的になってしまう課題がありました。
+                        </p>
+                        <p>
+                            そこで先輩講師の模擬授業を10回以上分析し、**問いを挟む位置・抽象度を下げる基準を比較**して、生徒が迷う工程を特定しました。さらに自分でも中学内容を解き直し、**誤答が生まれる思考過程を具体的に言語化**しました。
+                        </p>
+                        <p>
+                            授業では各行程で「なぜこの操作か」を明確にし、理解が浅い生徒には補助問題で手順を再構成する形に改善しました。
+                        </p>
+                        <p>
+                            その結果、平均点が約10点下がったテストでも**6名全員が80点以上を達成し、90点以上も1名から3名に増加**しました。この経験から、課題を構造化し、実行可能な改善策に落とし込む力を培いました。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-heading">🛠️ スキル / Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">💡</span>
+                    <h3>課題解決力</h3>
+                    <p>問題の本質を見抜き、具体的な改善策を設計・実行し成果を出すことができます。（ガクチカ参照）</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">💬</span>
+                    <h3>コミュニケーション</h3>
+                    <p>相手の理解度や背景に合わせて、伝え方を調整し、双方向の対話を通じて信頼関係を構築できます。</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">📈</span>
+                    <h3>データ分析・活用</h3>
+                    <p>テスト結果や行動データなどを分析し、次のアクションに繋げる論理的思考力を持っています。（例：Excel/スプレッドシート）</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🌐</span>
+                    <h3>ITスキル</h3>
+                    <p>基本的なPCスキル（Word, PowerPoint）に加え、簡単なWebサイト制作（HTML/CSS）の知識があります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-heading">📂 ポートフォリオ / Portfolio</h2>
+            <div class="portfolio-grid">
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        プロジェクト 1 画像
+                    </div>
+                    <div class="project-info">
+                        <h3>教育ボランティア活動報告書</h3>
+                        <p>〇〇地域の学習支援活動で作成した指導計画と実績のまとめ。生徒の成長プロセスを記録。</p>
+                        <a href="#">詳細を見る &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        プロジェクト 2 画像
+                    </div>
+                    <div class="project-info">
+                        <h3>大学ゼミ研究発表資料</h3>
+                        <p>「アクティブラーニングにおける動機付け」に関する研究発表資料。理論と実践を統合。</p>
+                        <a href="#">詳細を見る &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        プロジェクト 3 画像
+                    </div>
+                    <div class="project-info">
+                        <h3>簡易Webサイト制作事例</h3>
+                        <p>本ポートフォリオサイトを含む、HTML/CSSを用いたシンプルなWebデザインの作成事例。</p>
+                        <a href="#">詳細を見る &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-heading">📧 連絡先 / Contact</h2>
+            <div class="contact-info">
+                <p>ご質問や面談のご依頼など、お気軽にご連絡ください。</p>
+                <p>E-mail: <a href="mailto:taro.sato@example.com">taro.sato@example.com</a></p>
+                <p>LinkedIn: <a href="[あなたのLinkedIn URL]">LinkedInプロフィールへ</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            &copy; 2025 Sato Taro Portfolio. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
